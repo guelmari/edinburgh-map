@@ -334,7 +334,7 @@
     /* ── Initialise map ── */
     const map = L.map('map', {
       center: [55.9506, -3.1860],
-      zoom: 13,
+      zoom: 12,
       zoomControl: true,
       scrollWheelZoom: false,
       tap: true
@@ -388,6 +388,10 @@
         });
       });
     });
+
+    /* ── Fit map to show all pins ── */
+    const bounds = L.latLngBounds(PLACES.map(p => [p.lat, p.lng]));
+    map.fitBounds(bounds, { padding: [40, 40] });
 
     /* ── Invalidate size after fonts/layout settle ── */
     setTimeout(() => map.invalidateSize(), 100);
